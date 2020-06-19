@@ -52,31 +52,6 @@ class Board implements Cloneable {  // 盤面クラス
     return b;
   }
 
-  public void printBoard() {       //コンソール上に盤面を表示するメソッド
-    System.out.println("--------------------------------------------------");
-    System.out.println("現在の手数は　" + this.count + "です。");
-    System.out.print("  ");
-    for (int i = 0; i < this.size; i++) {
-      System.out.print(" " + column[i]);
-    }
-    System.out.println();
-    for (int i = 0; i < this.size; i++) {
-      System.out.println();
-      System.out.printf("%2d", row[i]);
-      for (int j = 0; j < this.size; j++) {
-        if (this.square[i][j] == 1) {
-          System.out.print(" ●");
-        } else if (this.square[i][j] == -1) {
-          System.out.print(" ○");
-        } else {
-          System.out.print("  ");
-        }
-      }
-      System.out.println();
-    }
-    System.out.println("--------------------------------------------------");
-  }
-
   //盤面に石を置いて相手の石を反転させる
   public int put(int h, int v, int color) {
     int reverse = 0;

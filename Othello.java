@@ -17,6 +17,30 @@ public class Othello {
     return player;
   }
 
+  static void printBoard(Board b) {       //コンソール上に盤面を表示するメソッド
+    System.out.println("--------------------------------------------------");
+    System.out.println("現在の手数は　" + b.count + "です。");
+    System.out.print("  ");
+    for (int i = 0; i < b.size; i++) {
+      System.out.print(" " + Board.column[i]);
+    }
+    System.out.println();
+    for (int i = 0; i < b.size; i++) {
+      System.out.printf("\n%2d", Board.row[i]);
+      for (int j = 0; j < b.size; j++) {
+        if (b.square[i][j] == 1) {
+          System.out.print(" ●");
+        } else if (b.square[i][j] == -1) {
+          System.out.print(" ○");
+        } else {
+          System.out.print("  ");
+        }
+      }
+      System.out.println();
+    }
+    System.out.println("--------------------------------------------------");
+  }
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int color = 1;
@@ -30,7 +54,7 @@ public class Othello {
     System.out.println("後攻のプレイヤーを選んで下さい (1=human 2=easy 3=normal 4=hard ) : ");
     Player white = initPlayer(-1, scanner.nextInt());
 
-    board.printBoard();
+    printBoard(board);
     while (frag <= 1) {
       if (color == 1) {
         success = black.action(board);
@@ -38,7 +62,7 @@ public class Othello {
         success = white.action(board);
       }
       if (success == true) {
-        board.printBoard();
+        printBoard(board);
         frag = 0;
       } else {
         frag++;
